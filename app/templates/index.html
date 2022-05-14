@@ -11,18 +11,6 @@
     {% for post in posts %}
     <div class="column">
     <div class="card pitch mt-4 ml-4 " style="width: 20rem;">
-      <!-- {% if current_user.profile_pic_path %} -->
-      <img
-      src="{{ url_for('static', filename='photos/default.jpeg')}}"
-      class="img-fluid rounded-circle"
-      style="max-height: 80px; width: 80px;"/> 
-      <!-- {% else %} 
-      <img
-      src="{{ url_for('static', filename='photos/default.jpeg')}}"
-      alt=""
-      class="img-fluid rounded-circle"
-      style="max-height: 50px; width: 50px;"/> 
-      {% endif %} -->
         <div class="card-body">
           <h3 class="card-title" style="color:maroon; font-weight:500;">{{post.author.username}}'s post.</h3>
           <h4 class="card-title" style="color:navy; font-weight:500; font-family: sans-serif;">Category:{{post.category}}</h4>

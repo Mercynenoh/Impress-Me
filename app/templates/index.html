@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
-{% block content%}
-<div class="container">
-<div class="card" style="width: 25rem;">
-    {% for post in posts %}
-    <div class="card-body">
-      <h5 class="card-title">{{post.author.username}}</h5>
-      <h3 class="card-title">{{post.category}}</h3>
-      <h4 class="card-title">{{post.pitch}}</h4>
-      <p class="card-text">{{post.date_posted}}</p>
-      <a href="#" class="btn btn-primary">Add Comment</a>
-      {% endfor %}
-    </div>
-  </div>
-</div>
 
-{% endblock %}
+  {% block content%}
+  <div class="container">
+    <div class="card row" style="width: 25rem;">
+        {% for post in posts %}
+        <img class="rounded-circle" src="{{url_for('static',filename='photos' + 'post.author.profile_pic_path')}}" alt="" class="img-thumbnail">
+        <div class="card-body column">
+          <h3 class="card-title" style="color:navy; font-weight:500; font-family: sans-serif;">Category:{{post.category}}</h3>
+          <h4 class="card-title">{{post.pitch}}</h4>
+          <p class="card-title" style="color:maroon; font-weight:500;">Author: {{post.author.username}}</p>
+          <p class="card-text" style="color:maroon; font-weight:500;">Date: {{post.date_posted}}</p>
+          <a href="/comment" class="btn btn-primary">Add Comment</a>
+          {% for comment in comments %}
+          <p>Comment: {{comment.text}}</p>
+          {% endfor %}
+          {% endfor %}
+          
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    {% endblock %}
+

@@ -8,6 +8,10 @@ class PostForm(FlaskForm):
     pitch = TextAreaField('Pitch',validators=[DataRequired()])
     submit = SubmitField('Post')
 
+class CommentForm(FlaskForm):
+    text = TextAreaField('Text',validators=[DataRequired()])
+    submit = SubmitField('Post')
+
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [DataRequired()])
     submit = SubmitField('Submit')

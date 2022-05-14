@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,flash, abort
 from . import main
-from .forms import PostForm, UpdateProfile
-from app.models import User, Post, Role
+from .forms import PostForm, UpdateProfile, CommentForm
+from app.models import User, Post, Role, Comment
 from flask_login import login_required, current_user
 from .. import db,photos
 import os
@@ -12,12 +12,9 @@ import os
 @login_required
 def index():
     posts = Post.query.all()
-    business = Post.query.filter_by(category = 'Pickuplines').all()
-    finance= Post.query.filter_by(category = 'Motivation').all()
-    relationships= Post.query.filter_by(category = 'Technology').all()
-    wellbeing = Post.query.filter_by(category = 'Interview').all()
+    comments = Comment.query.all()
     
-    return render_template('index.html', posts = posts,business=business, finance=finance, relationships=relationships, wellbeing=wellbeing)
+    return render_template('index.html', posts = posts, comments=comments)
 
 @main.route("/post/new", methods=['GET', 'POST'])
 @login_required
@@ -30,6 +27,20 @@ def new_post():
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('pitch.html', title='New Post', form = form)
+
+@main.route('/comment',methods= ['GET', 'POST'])
+@login_required
+def comment():
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(text=form.text.data)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    return render_template('comment.html', title='New Comment', form = form)
+
+
+
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -69,3 +80,4 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+

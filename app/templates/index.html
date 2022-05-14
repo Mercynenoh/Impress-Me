@@ -11,23 +11,39 @@
     {% for post in posts %}
     <div class="column">
     <div class="card pitch mt-4 ml-4 " style="width: 20rem;">
-        <!-- <img class="rounded-circle" src="{{url_for('static',filename='photos' + 'author.profile_pic_path')}}" alt="" class="img-thumbnail"> -->
+      <!-- {% if current_user.profile_pic_path %} -->
+      <img
+      src="{{ url_for('static', filename='photos/default.jpeg')}}"
+      class="img-fluid rounded-circle"
+      style="max-height: 80px; width: 80px;"/> 
+      <!-- {% else %} 
+      <img
+      src="{{ url_for('static', filename='photos/default.jpeg')}}"
+      alt=""
+      class="img-fluid rounded-circle"
+      style="max-height: 50px; width: 50px;"/> 
+      {% endif %} -->
         <div class="card-body">
-          <h3 class="card-title" style="color:maroon; font-weight:500;"> This is {{post.author.username}}'s post.</h3>
+          <h3 class="card-title" style="color:maroon; font-weight:500;">{{post.author.username}}'s post.</h3>
           <h4 class="card-title" style="color:navy; font-weight:500; font-family: sans-serif;">Category:{{post.category}}</h4>
         
-          <h4 class="card-title">{{post.pitch}}
-            {% for comment in comments %}
+          <h4 class="card-title" style="font-family: cursive;">{{post.pitch}}
           </h4>
+          <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
+          ><ion-icon name="thumbs-up"></ion-icon></a>
+          <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
+          ><ion-icon name="thumbs-down"></ion-icon></a>
+  
           <div class="card-footer">
-            <small class="text-muted">Date: {{post.date_posted}}</small>
+            <small class="text-muted">Posted on: {{post.date_posted}}</small>
           </div>
           <a href="/comment" class="btn btn-info">Add Comment</a>
+          {% for comment in comments %}
           <p>Comment: {{comment.text}}</p>
+          {% endfor %}
         </div>
         </div>
         </div>
-        {% endfor %}
         {% endfor %}
         </div>
       </div>

@@ -11,9 +11,9 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
   text-align: center;
-  background-color:  rgb(198, 247, 250);
+  background:linear-gradient(to right ,rgb(144, 238, 238) ,rgb(245, 127, 209));
   width: 350px;
-  height: 450px;
+  height: 500px;
   font-weight: 600;
   align-content: center;
   font-family: sans-serif;

@@ -11,7 +11,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
   text-align: center;
-  background-color: beige;
+  background-color:  rgb(198, 247, 250);
   width: 350px;
   height: 450px;
   font-weight: 600;
@@ -29,7 +29,7 @@ body{
   /* background-color: blue; */
   align-content: center;
   background: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)), url(.);
+            rgba(0, 0, 0, 0.5)), url(../static/photos/harry-singh-D5tamTgr7uU-unsplash.jpg);
 }
 
 .row:after {

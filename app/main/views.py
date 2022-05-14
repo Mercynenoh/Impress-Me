@@ -13,6 +13,7 @@ import os
 def index():
     posts = Post.query.all()
     comments = Comment.query.all()
+    user = User.query.all()
     
     return render_template('index.html', posts = posts, comments=comments)
 

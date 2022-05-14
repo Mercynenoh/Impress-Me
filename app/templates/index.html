@@ -6,18 +6,19 @@
   {% block content%}
   <div class="container">
 
-    <a href="/post/new" class="btn btn-danger mt-4">Add Comment</a>
+    <a href="/post/new" class="btn btn-danger mt-4">Add  Pitch</a>
     <div class="row">
     {% for post in posts %}
     <div class="column">
     <div class="card pitch mt-4 ml-4 " style="width: 20rem;">
         <!-- <img class="rounded-circle" src="{{url_for('static',filename='photos' + 'author.profile_pic_path')}}" alt="" class="img-thumbnail"> -->
         <div class="card-body">
+          <h3 class="card-title" style="color:maroon; font-weight:500;"> This is {{post.author.username}}'s post.</h3>
           <h4 class="card-title" style="color:navy; font-weight:500; font-family: sans-serif;">Category:{{post.category}}</h4>
+        
           <h4 class="card-title">{{post.pitch}}
             {% for comment in comments %}
           </h4>
-          <p class="card-title" style="color:maroon; font-weight:500;">Author: {{post.author.username}}</p>
           <div class="card-footer">
             <small class="text-muted">Date: {{post.date_posted}}</small>
           </div>

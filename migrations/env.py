@@ -66,7 +66,7 @@ def run_migrations_online():
     # when there are no changes to the schema
     # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html
     def process_revision_directives(context, revision, directives):
-        if getattr(config.cmd_opts, 'autogenerate', True):
+        if getattr(config.cmd_opts, 'autogenerate', False):
             script = directives[0]
             if script.upgrade_ops.is_empty():
                 directives[:] = []
@@ -83,6 +83,7 @@ def run_migrations_online():
             connection=connection,
             target_metadata=target_metadata,
             process_revision_directives=process_revision_directives,
+            render_as_batch=True,# this is new feature
             **current_app.extensions['migrate'].configure_args
         )
 

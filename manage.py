@@ -4,7 +4,7 @@ from app.models import User,Role,Post
 from  flask_migrate import Migrate, MigrateCommand
 
 app = create_app('production')
-migrate = Migrate(app,db)
+migrate = Migrate(app,db,render_as_batch=True)
 manager = Manager(app)
 manager.add_command('server',Server)
 manager.add_command('db',MigrateCommand)

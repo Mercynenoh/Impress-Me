@@ -1,4 +1,3 @@
 virtual/
 __pycache__/
 config.py
-env.py

@@ -8,11 +8,16 @@ class Config:
 
 
 class ProdConfig(Config):
-    pass
+    '''Child
+    '''
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+DEBUG = True
 
 
 class DevConfig(Config):
-    DEBUG = True
+    ''' child class
+    '''
+
 
 config_options = {
 'development':DevConfig,

@@ -4,7 +4,7 @@ from app.models import User,Role,Post
 from  flask_migrate import Migrate, MigrateCommand
 
 app = create_app('production')
-migrate = Migrate(app,db,render_as_batch=True)
+migrate = Migrate(app,db)
 manager = Manager(app)
 manager.add_command('server',Server)
 manager.add_command('db',MigrateCommand)
@@ -12,6 +12,6 @@ manager.add_command('db',MigrateCommand)
 
 @manager.shell
 def make_shell_context():
-    return dict(app = app, db = db, User = User, Role = Role, Post = Post, Comment = Comment )
+    return dict(app = app, db = db, User = User, Role = Role, Post = Post, Comment = Comment, Like= Like )
 if __name__ == '__main__':
     manager.run()

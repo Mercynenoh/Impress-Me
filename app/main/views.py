@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,flash, abort
 from . import main
 from .forms import PostForm, UpdateProfile, CommentForm
-from app.models import User, Post, Role, Comment
+from app.models import User, Post, Role, Comment, Like
 from flask_login import login_required, current_user
 from .. import db,photos
 import os
@@ -78,9 +78,23 @@ def delete_post(post_id):
     flash('Post deleted.', 'success')
     return redirect(url_for('main.index'))
 
+counter = 0
+@main.route("/like",  methods=['GET', 'POST'])
+@login_required
+def like():
+    global counter
+    counter += 1
+    return redirect(url_for('main.index',times=str(counter)))
+   
+    
 
 
-
+# counter = 0
+# @app.route('/home')
+# def index():
+#     global counter
+#     counter += 1
+#     return render_template('index.html', acronyms=db, times=str(counter), date= str(datetime.now()))
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -114,9 +128,9 @@ def update_profile(uname):
 @login_required
 def update_pic(uname):
     user = User.query.filter_by(username = uname).first()
-    if 'static/photos' in request.files:
-        filename = photos.save(request.files['static/photos'])
-        path = f'static/photos{filename}'
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))

@@ -5,7 +5,6 @@
 {% endblock %}
   {% block content%}
   <div class="container">
-
     <a href="/post/new" class="btn btn-danger mt-4">Add  Pitch</a>
     <div class="row">
     {% for post in posts %}
@@ -13,20 +12,24 @@
     <div class="card pitch mt-4 ml-4 ">
         <div class="card-body">
           <div>
+            {% if post.author.profile_pic_path %}
+            <img src="{{url_for('static',filename=post.author.profile_pic_path)}}" alt="" class="img-thumbnail rounded-circle" style=" max-height: 80px; width: 80px;">
+          {% else %}
             <img
             src="{{ url_for('static', filename='photos/default.jpeg')}}"
             class="img-fluid rounded-circle"
             style="max-height: 80px; width: 80px;"/> 
+            {% endif %}
                 <h3 class="card-title" style="color:maroon; font-weight:500;">{{post.author.username}}'s post.</h3>
           </div>
           <h4 class="card-title" style="color:rgb(80, 5, 51); font-weight:900; font-family: sans-serif;">Category: {{post.category}}</h4>
          
           <h4 class="card-title" style="font-family: cursive;">{{post.pitch}}
           </h4>
-          <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
-          ><ion-icon name="thumbs-up"></ion-icon></a>
-          <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
-          ><ion-icon name="thumbs-down"></ion-icon></a> 
+          <a class="btn btn-outline-light btn-floating m-1" href="{{url_for('main.like')}}"role="button"
+          ><ion-icon name="thumbs-up">{{times}}</ion-icon></a>
+          <a class="btn btn-outline-light btn-floating m-1" href="{{url_for('main.like')}}" role="button"
+          ><ion-icon name="thumbs-down">{{times}}</ion-icon></a> 
           <a href="{{url_for('main.post', post_id= post.id)}}" class="btn btn-info">View post</a>
           {% for comment in comments %}
           <p>Comment: {{comment.text}}</p>

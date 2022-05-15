@@ -19,6 +19,7 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     posts = db.relationship('Post', backref='author', lazy="dynamic")
     comments = db.relationship('Comment', backref='author', lazy="dynamic")
+    likes = db.relationship('Like', backref='user', lazy="dynamic")
         
     @property
     def password(self):
@@ -52,6 +53,7 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     pitch= db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    likes = db.relationship('Like', backref='post', lazy="dynamic")
 
     def __repr__(self):
         return f"Post('{self.category}', '{self.date_posted}')"
@@ -67,6 +69,18 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f"Comment('{self.text}', '{self.date_posted}')"
+
+class Like(db.Model):
+    __tablename__ = 'likes'
+
+    id = db.Column(db.Integer,primary_key = True)
+    author= db.Column(db.String(255))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return f"Like('{self.author}', '{self.date_posted}')"
 
 
 

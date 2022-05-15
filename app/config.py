@@ -15,7 +15,7 @@ class Config:
 class ProdConfig(Config):
     '''Child
     '''
-SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://mercy:mercy@localhost/pitch'
 
 DEBUG =True
     
@@ -25,6 +25,7 @@ DEBUG =True
 class DevConfig(Config):
     ''' child class
     '''
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://mercy:mercy@localhost/pitch'
     
 
 config_options = {

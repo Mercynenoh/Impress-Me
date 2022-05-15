@@ -13,14 +13,14 @@
         <div class="card-body">
           <div>
             {% if post.author.profile_pic_path %}
-            <img src="{{url_for('static',filename=post.author.profile_pic_path)}}" alt="" class="img-thumbnail rounded-circle" style=" max-height: 80px; width: 80px;">
+            <img class="rounded-circle" src="{{url_for('static',filename=post.author.profile_pic_path)}}" alt="" class="img-thumbnail" style=" max-height: 120px; width: 120px;">
           {% else %}
             <img
             src="{{ url_for('static', filename='photos/default.jpeg')}}"
             class="img-fluid rounded-circle"
-            style="max-height: 80px; width: 80px;"/> 
+            style="max-height: 100px; width: 100px;"/> 
             {% endif %}
-                <h3 class="card-title" style="color:maroon; font-weight:500;">{{post.author.username}}'s post.</h3>
+                <h3 class="card-title mt-4 mr-5" style="color:maroon; font-weight:500; float: right;">{{post.author.username}}'s post.</h3>
           </div>
           <h4 class="card-title" style="color:rgb(80, 5, 51); font-weight:900; font-family: sans-serif;">Category: {{post.category}}</h4>
          

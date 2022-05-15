@@ -58,14 +58,14 @@ def update_post(post_id):
 @login_required
 def comment(post_id):
     post = Post.query.get_or_404(post_id)
-    comment = Comment.query.get(post_id)
+    # comment = Comment.query.get(post_id)
     form = CommentForm()
     if form.validate_on_submit():
         comment = Comment(text=form.text.data)
         db.session.add(comment)
         db.session.commit()
-        return redirect(url_for('main.index'))
-    return render_template('comment.html', title='New Comment', form = form)
+        return redirect(url_for('main.index', post_id=post.id))
+    return render_template('comment.html', title='New Comment', form = form, post_id=post_id)
 
 @main.route("/post/<int:post_id>/delete",  methods=['GET', 'POST'])
 @login_required

@@ -6,6 +6,10 @@ class Config:
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
+    @staticmethod
+    def init_app(app):
+        pass
+
 
 
 class ProdConfig(Config):
@@ -13,14 +17,15 @@ class ProdConfig(Config):
     '''
 SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
-DEBUG = True
-
+DEBUG =True
+    
+    
+    
 
 class DevConfig(Config):
-    
     ''' child class
     '''
-
+    
 
 config_options = {
 'development':DevConfig,

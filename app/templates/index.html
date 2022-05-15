@@ -27,7 +27,7 @@
           ><ion-icon name="thumbs-up"></ion-icon></a>
           <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
           ><ion-icon name="thumbs-down"></ion-icon></a> 
-          <a href="{{url_for('main.comment', post_id= post.id)}}" class="btn btn-info">Add Comment</a>
+          <a href="{{url_for('main.post', post_id= post.id)}}" class="btn btn-info">View post</a>
           {% for comment in comments %}
           <p>Comment: {{comment.text}}</p>
           {% endfor %} 

@@ -1,4 +1,5 @@
 import os
+import psycopg2
 
 class Config:
     SECRET_KEY='Today'

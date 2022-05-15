@@ -10,7 +10,7 @@ class Config:
 class ProdConfig(Config):
     '''Child
     '''
-SQLALCHEMY_DATABASE_URI = os.environ.get("postgresql+psycopg2://mercy:mercy@localhost/pitch")
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 DEBUG = True
 
 

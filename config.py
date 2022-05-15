@@ -2,7 +2,7 @@ import os
 
 class Config:
     SECRET_KEY='Today'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mercy:mercy@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://mercy:mercy@localhost/pitch'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 

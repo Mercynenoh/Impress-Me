@@ -5,10 +5,7 @@
 {% endblock %}
   {% block content%}
   <div class="container">
-
-    <a href="/post/new" class="btn btn-danger mt-4">Add  Pitch</a>
     <div class="row">
-    {% for post in posts %}
     <div class="column">
     <div class="card pitch mt-4 ml-4 ">
         <div class="card-body">
@@ -19,34 +16,26 @@
             style="max-height: 80px; width: 80px;"/> 
                 <h3 class="card-title" style="color:maroon; font-weight:500;">{{post.author.username}}'s post.</h3>
           </div>
-          <h4 class="card-title" style="color:rgb(80, 5, 51); font-weight:900; font-family: sans-serif;">Category: {{post.category}}</h4>
-         
+          <h4 class="card-title" style="color:navy; font-weight:500; font-family: sans-serif;">Category:{{post.category}}</h4>
+        
           <h4 class="card-title" style="font-family: cursive;">{{post.pitch}}
           </h4>
           <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
           ><ion-icon name="thumbs-up"></ion-icon></a>
           <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
-          ><ion-icon name="thumbs-down"></ion-icon></a> 
-          <a href="{{url_for('main.comment', post_id= post.id)}}" class="btn btn-info">Add Comment</a>
+          ><ion-icon name="thumbs-down"></ion-icon></a>
+           <div class="card-footer">
+            <small class="text-muted">Posted on: {{post.date_posted}}</small>
+          </div>
+          <!-- <a href="{{url_for('main.comment', post_id= post.id)}}" class="btn btn-info">Add Comment</a>
           {% for comment in comments %}
           <p>Comment: {{comment.text}}</p>
-          {% endfor %} 
-          
-          <br>
-          <a href="{{url_for('main.update_post', post_id= post.id)}}" class="btn btn-primary mt-4">Edit post</a>
-          <a class="btn btn-danger btn-floating mt-4" href="" role="button"
-          ><ion-icon name="trash" ></ion-icon></a>  <br>
-          <em>Note: You can only edit and delete yours posts</em> <br>
-           <div class="card-footer">
-            <small class="text-muted">Posted on: {{post.date_posted.strftime('%Y-%m-%d')}}</small>
-          </div>
+          {% endfor %} -->
         </div>
         </div>
         </div>
-        {% endfor %}
         </div>
       </div>
     
     
     {% endblock %}
-

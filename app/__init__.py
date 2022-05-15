@@ -17,6 +17,9 @@ login_manager.login_view = 'auth.login'
 def create_app(config_name):
 
     app = Flask(__name__)
+    # app.config["SQLALCHEMY_DATABASE_URI"] = ("postgresql://mercy:mercy@localhost/pitch")
+    # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+   
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')

@@ -27,17 +27,44 @@ def new_post():
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.index'))
-    return render_template('pitch.html', title='New Post', form = form)
+    return render_template('pitch.html', title='New Pitch',
+    form = form, legend='New Pitch')
 
-@main.route('/comment',methods= ['GET', 'POST'])
+@main.route("/post/<int:post_id>")
 @login_required
-def comment():
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', category=post.category, post=post)
+
+@main.route("/post/<int:post_id>/update",  methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.category = form.category.data
+        post.pitch = form.pitch.data
+        db.session.commit()
+        return redirect(url_for('main.post', post_id=post.id))
+    elif request.method == 'GET':
+        form.category.data = post.category
+        form.pitch.data = post.pitch
+    return render_template('pitch.html', title = 'Update pitch', form = form,
+    legend='Update Pitch')
+
+
+@main.route('/post/<int:post_id>/comment',methods= ['GET', 'POST'])
+@login_required
+def comment(post_id):
+    post = Post.query.get_or_404(post_id)
     form = CommentForm()
     if form.validate_on_submit():
         comment = Comment(text=form.text.data)
         db.session.add(comment)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.index',post_id=post.id))
     return render_template('comment.html', title='New Comment', form = form)
 
 
@@ -81,4 +108,6 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+
 

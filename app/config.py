@@ -17,6 +17,7 @@ DEBUG = True
 
 
 class DevConfig(Config):
+    
     ''' child class
     '''
 
